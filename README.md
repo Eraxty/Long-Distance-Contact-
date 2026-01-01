@@ -1,8 +1,8 @@
-# LDC (Long Distance contact)
+# LDC (Long Distance Contact)
 
 LDC is a small tool that tells you and your friend which direction to look in so you’re technically facing each other across long distances.
 
-No, you cannot actually see each other.
+No, you cannot actually see each other.  
 Yes, this is still fun.
 
 ## What it does
@@ -21,8 +21,12 @@ Yes, this is still fun.
 - Applies trigonometry to calculate bearings on a spherical Earth
 - Outputs angles between 0° and 360°
 
-## How to use
+## Accuracy and limitations
+This project calculates bearings using a 2D approach. While this is accurate enough for most typical use cases, it can become less reliable over very long distances or near the poles.
 
+A more accurate approach would involve a full 3D vector-based representation of positions on the Earth. This project does not currently implement that, but it’s something I’d like to work on in the future.
+
+## How to use
 Run the script:
 ```bash
 python ldc.py
