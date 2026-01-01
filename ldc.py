@@ -31,5 +31,8 @@ you_look = bearing(lat1, lon1, lat2, lon2)
 friend_look = bearing(lat2, lon2, lat1, lon1)
 
 print("\nResults:")
-print("You should look at:", round(you_look, 1), "degrees")
-print("Your friend should look at:", round(friend_look, 1), "degrees")
+if lat1 == lat2 and lon1 == lon2:
+    print("Both locations are the same. No direction exists.")
+else:
+    print("You should look at:", round(you_look, 1), "degrees")
+    print("Your friend should look at:", round(friend_look, 1), "degrees")
