@@ -54,13 +54,36 @@ def bearing(lat1, lon1, lat2, lon2):
 
     return angle_deg
 
+def great_circle_distance(lat1, lon1, lat2, lon2):
+    R = 6371.0  # Earth radius in kilometers
 
+    lat1 = math.radians(lat1)
+    lon1 = math.radians(lon1)
+    lat2 = math.radians(lat2)
+    lon2 = math.radians(lon2)
+
+    dlat = lat2 - lat1
+    dlon = lon2 - lon1
+
+    a = (
+        math.sin(dlat / 2) ** 2
+        + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
+    )
+
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+
+    distance = R * c
+    return distance
+
+distance = great_circle_distance(lat1, lon1, lat2, lon2)
+you_look = bearing(lat1, lon1, lat2, lon2)
+friend_look = bearing(lat2, lon2, lat1, lon1)
+    
 print("\nResults:")
+
 if lat1 == lat2 and lon1 == lon2:
     print("Both locations are the same. No direction exists.")
-else:
-    you_look = bearing(lat1, lon1, lat2, lon2)
-    friend_look = bearing(lat2, lon2, lat1, lon1)
-
+else:    
+    print("Great-circle distance:", round(distance, 2), "km")
     print("You should look at:", round(you_look, 1), "degrees")
     print("Your friend should look at:", round(friend_look, 1), "degrees")
